@@ -1,0 +1,36 @@
+@import '../../variables.scss';
+.digit {
+  background-image: url($url);
+  height: 23px;
+  width: 13px;
+  &_1 {
+    background-position: 0 0;
+  }
+  &_2 {
+    background-position: -14px 0;
+  }
+  &_3 {
+    background-position: -28px 0;
+  }
+  &_4 {
+    background-position: -42px 0;
+  }
+  &_5 {
+    background-position: -56px 0;
+  }
+  &_6 {
+    background-position: -70px 0;
+  }
+  &_7 {
+    background-position: -85px 0;
+  }
+  &_8 {
+    background-position: -98px 0;
+  }
+  &_9 {
+    background-position: -112px 0;
+  }
+  &_0 {
+    background-position: -126px 0;
+  }
+}
