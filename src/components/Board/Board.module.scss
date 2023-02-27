@@ -1,5 +1,11 @@
+@import '../../variables.scss';
 .grid {
   display: grid;
   grid-template-columns: repeat(16, 16px);
   grid-auto-rows: 16px;
+}
+.game {
+  transform: scale(1.5);
+  padding: 15px;
+  background-color: $bg;
 }
