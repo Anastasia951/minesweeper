@@ -26,7 +26,6 @@ export const Cell = ({ isOpened = false, value }) => {
   } else {
     classname = 'closed'
   }
-  console.log(classname)
   return (
     <button
       className={`${styles.cell} ${styles[classname]}`}
