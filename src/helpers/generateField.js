@@ -7,12 +7,9 @@ export const genereateField = (field, bombs, startX = 0, startY = 0) => {
     if (startX === rndX && startY === rndY) continue
     if (field[rndX][rndY] === null) {
       field[rndX][rndY] = -1
-      console.log({ rndX, rndY })
       currentBombs++
     }
   }
-
-  console.log(field)
   countBombs(field)
 
   return field

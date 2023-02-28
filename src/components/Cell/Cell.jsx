@@ -1,6 +1,15 @@
 import React from 'react'
+import { useOpenArea } from '../../store/selectors'
+import { useStore } from '../../store/store'
 import styles from './Cell.module.scss'
-export const Cell = ({ isOpened = false, value }) => {
+export const Cell = ({ isOpened = false, value, x, y }) => {
+  const openArea = useStore(useOpenArea)
+  function onClickHandler() {
+    openArea(x, y)
+  }
+  if (isOpened) {
+    console.log({ x, y })
+  }
   let classname = ''
   if (isOpened) {
     switch (value) {
@@ -28,6 +37,7 @@ export const Cell = ({ isOpened = false, value }) => {
   }
   return (
     <button
+      onClick={onClickHandler}
       className={`${styles.cell} ${styles[classname]}`}
       alt={`cell-${classname}`}></button>
   )
