@@ -26,6 +26,7 @@ export const Board = () => {
   const decreaseBombs = useStore(useDecreaseBombs)
   const oldValue = useStore(useOldValue)
   function onClickHandler(e) {
+    if (status === STATE.WON || status === STATE.FAILED) return
     const { x, y } = e.target.dataset
     if (x && y) {
       if (status === STATE.NOT_STARTED) {
@@ -36,6 +37,8 @@ export const Board = () => {
   }
   function onContextMenuHandler(e) {
     e.preventDefault()
+    if (status === STATE.WON || status === STATE.FAILED) return
+
     const { x, y } = e.target.dataset
     if (x && y) {
       if (opened[y][x]) return

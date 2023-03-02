@@ -25,7 +25,7 @@ export const genereateField = (field, bombs, row, column) => {
 function countBombs(field) {
   for (let i = 0; i < field.length; i++) {
     for (let j = 0; j < field[i].length; j++) {
-      if (field[i][j] === -1 || field[i][j] === -10) continue
+      if (field[i][j] < 0 || field[i][j] === 'flag' || field[i][j] === 'question') continue
       let counter = 0
 
       if (j > 0) {
