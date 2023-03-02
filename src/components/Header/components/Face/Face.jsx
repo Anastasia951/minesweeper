@@ -1,14 +1,13 @@
 import React from 'react'
-import { useGameState, useStartGame } from '../../../../store/selectors'
+import { useGameState, useRestartGame } from '../../../../store/selectors'
 import { useStore } from '../../../../store/store'
 import styles from './Face.module.scss'
 export const Face = () => {
-  const startGame = useStore(useStartGame)
   const status = useStore(useGameState)
-
+  const restart = useStore(useRestartGame)
   return (
     <button
-      onClick={startGame}
+      onClick={restart}
       className={`${styles.face} ${styles[`face__${status}`]}`}
     />
   )

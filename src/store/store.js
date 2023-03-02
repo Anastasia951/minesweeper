@@ -31,5 +31,15 @@ export const useStore = create(devtools(immer((set) => ({
     if (isGameOver) {
       state.state = STATE.FAILED
     }
+  }),
+  restart: () => set((state) => {
+    state.field = new Array(FIELD_WIDTH).fill('').map(() => {
+      return new Array(FIELD_WIDTH).fill(null)
+    })
+    state.opened = new Array(FIELD_WIDTH).fill('').map(() => {
+      return new Array(FIELD_WIDTH).fill(false)
+    })
+    state.state = STATE.NOT_STARTED
+    state.bombs = 40
   })
 }))))

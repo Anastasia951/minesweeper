@@ -11,7 +11,13 @@ export const Timer = () => {
   function clear() {
     clearInterval(timerRef.current)
   }
+
   useEffect(() => {
+    console.log(status)
+    if (status === STATE.NOT_STARTED) {
+      setSeconds('000')
+      timerRef.current = null
+    }
     if (status === STATE.IN_PROGRESS && !timerRef.current) {
       timerRef.current = setInterval(() => {
         setSeconds(sec => {
