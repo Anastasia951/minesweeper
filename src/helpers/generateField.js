@@ -1,17 +1,28 @@
-export const genereateField = (field, bombs, startX = 0, startY = 0) => {
-  let currentBombs = 0
-  while (currentBombs < bombs) {
-    let rndX = Math.floor(Math.random() * field[0].length)
-    let rndY = Math.floor(Math.random() * field.length)
+import { original } from "immer"
 
-    if (startX === rndX && startY === rndY) continue
-    if (field[rndX][rndY] === null) {
-      field[rndX][rndY] = -1
+export const genereateField = (FIELD_WIDTH, bombs, row, column) => {
+  let field = new Array(FIELD_WIDTH).fill('').map(() => {
+    return new Array(FIELD_WIDTH).fill(null)
+  })
+
+  let currentBombs = 0
+  field[row][column] = -10
+
+  while (currentBombs < bombs) {
+    let randomRow = Math.floor(Math.random() * field.length)
+    let randomCol = Math.floor(Math.random() * field[0].length)
+
+    if (Math.abs(randomRow - row) <= 1 && Math.abs(column - randomCol) <= 1) {
+      continue
+    }
+    if (field[randomRow][randomCol] === null) {
+      field[randomRow][randomCol] = -1
       currentBombs++
     }
   }
-  countBombs(field)
 
+  countBombs(field)
+  field[row][column] = 0
   return field
 }
 
@@ -19,7 +30,7 @@ export const genereateField = (field, bombs, startX = 0, startY = 0) => {
 function countBombs(field) {
   for (let i = 0; i < field.length; i++) {
     for (let j = 0; j < field[i].length; j++) {
-      if (field[i][j] === -1) continue
+      if (field[i][j] === -1 || field[i][j] === -10) continue
       let counter = 0
 
       if (j > 0) {
@@ -63,8 +74,6 @@ function countBombs(field) {
           }
         }
       }
-
-
       field[i][j] = counter
     }
   }

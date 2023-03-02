@@ -1,3 +1,5 @@
+import { original } from "immer"
+
 import { create } from "zustand";
 import { devtools } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
@@ -20,11 +22,12 @@ export const useStore = create(devtools(immer((set) => ({
   }),
   state: STATE.NOT_STARTED,
   bombs: 40,
-  startGame: () => set(state => {
-    state.field = genereateField(state.field, state.bombs, 0, 0)
+  startGame: (row, column) => set(state => {
+    let field = genereateField(FIELD_WIDTH, state.bombs, row, column)
+    state.field = field
     state.state = STATE.IN_PROGRESS
   }),
-  openArea: (x, y) => set(state => {
-    state.opened = openArea(state.opened, x, y)
+  openArea: (row, column) => set(state => {
+    state.opened = openArea(state.field, state.opened, row, column)
   })
 }))))

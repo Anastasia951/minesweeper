@@ -16,11 +16,11 @@ export const Board = () => {
   const status = useStore(useGameState)
   const startGame = useStore(useStartGame)
   function onClickHandler(e) {
-    if (status === STATE.NOT_STARTED) {
-      startGame()
-    }
     const { x, y } = e.target.dataset
-    openArea(x, y)
+    if (status === STATE.NOT_STARTED) {
+      startGame(y, x)
+    }
+    openArea(y, x)
   }
   return (
     <div onClick={onClickHandler} className={`${styles.grid} bordered`}>
@@ -29,10 +29,10 @@ export const Board = () => {
           return (
             <Cell
               key={`${x}:${y}`}
-              isOpened={opened[x][y]}
+              isOpened={opened[y][x]}
               x={x}
               y={y}
-              value={board[x][y]}
+              value={board[y][x]}
             />
           )
         })
