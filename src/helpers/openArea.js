@@ -4,6 +4,7 @@ export const openArea = (bombs, field, row, column) => {
   function dfs(row = 0, column = 0) {
     if (row >= 0 && row < field[0].length && column >= 0 && column < field.length) {
       if (field[row][column]) return
+      if (field[row][column] === -1 || field[row][column] === 'flag' || field[row][column] === 'question') return
       field[row][column] = true
       if (bombs[row][column] === 0) {
         dfs(row - 1, column - 1)
@@ -20,6 +21,8 @@ export const openArea = (bombs, field, row, column) => {
 
   if (bombs[row][column] >= 0) {
     dfs(row, column)
+    return { field, isGameOver: false }
+  } else if (bombs[row][column] === 'flag' || bombs[row][column] === 'question') {
     return { field, isGameOver: false }
   } else {
     for (let i = 0; i < field.length; i++) {

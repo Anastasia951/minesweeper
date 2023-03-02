@@ -13,7 +13,6 @@ export const Timer = () => {
   }
 
   useEffect(() => {
-    console.log(status)
     if (status === STATE.NOT_STARTED) {
       setSeconds('000')
       timerRef.current = null

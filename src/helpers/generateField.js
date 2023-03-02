@@ -1,8 +1,5 @@
-export const genereateField = (FIELD_WIDTH, bombs, row, column) => {
-  let field = new Array(FIELD_WIDTH).fill('').map(() => {
-    return new Array(FIELD_WIDTH).fill(null)
-  })
-
+export const genereateField = (field, bombs, row, column) => {
+  if (field[row][column] === 'flag' || field[row][column] === 'question') return field
   let currentBombs = 0
   field[row][column] = -10
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './Cell.module.scss'
+let savedVal = null
 export const Cell = ({ isOpened = false, value, x, y }) => {
   let classname = ''
   if (isOpened) {
@@ -24,7 +25,19 @@ export const Cell = ({ isOpened = false, value, x, y }) => {
       }
     }
   } else {
-    classname = 'closed'
+    switch (value) {
+      case 'flag': {
+        classname = 'flag'
+        break
+      }
+      case 'question': {
+        classname = 'question'
+        break
+      }
+      default: {
+        classname = 'closed'
+      }
+    }
   }
   return (
     <button

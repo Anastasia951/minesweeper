@@ -1,7 +1,11 @@
 export const useField = state => state.field
-export const useOpenedCells = (state => state.opened)
+export const useOpenedCells = state => state.opened
 export const useBombsCount = state => state.bombs
 export const useGameState = state => state.state
 export const useOpenArea = state => state.openArea
 export const useStartGame = state => state.startGame
 export const useRestartGame = state => state.restart
+export const useMarkField = state => state.markField
+export const useIncreaseBombs = state => state.increaseBombs
+export const useDecreaseBombs = state => state.decreaseBombs
+export const useOldValue = state => state.flags
