@@ -27,7 +27,7 @@ export const Timer = () => {
       }, 1000)
     }
 
-    if (status === STATE.FAILED) {
+    if (status === STATE.FAILED || status === STATE.WON) {
       clear()
     }
 

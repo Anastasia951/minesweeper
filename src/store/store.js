@@ -19,21 +19,24 @@ export const useStore = create(devtools(immer((set) => ({
     return new Array(FIELD_WIDTH).fill(false)
   }),
   flags: {
-    6: {
-      1: 3
-    }
   },
   state: STATE.NOT_STARTED,
   bombs: 40,
+  freeArea: FIELD_WIDTH * FIELD_WIDTH - 40,
   startGame: (row, column) => set(state => {
     state.field = genereateField(state.field, state.bombs, row, column)
     state.state = STATE.IN_PROGRESS
   }),
   openArea: (row, column) => set(state => {
-    let { field, isGameOver } = openArea(state.field, state.opened, row, column)
+    let { field, isGameOver, counter } = openArea(state.field, state.opened, row, column)
+    state.freeArea -= counter
+    console.log(state.freeArea)
     state.opened = field
     if (isGameOver) {
       state.state = STATE.FAILED
+    }
+    if (state.freeArea === 0) {
+      state.state = STATE.WON
     }
   }),
   restart: () => set((state) => {
@@ -45,6 +48,7 @@ export const useStore = create(devtools(immer((set) => ({
     })
     state.state = STATE.NOT_STARTED
     state.bombs = 40
+    state.freeArea = FIELD_WIDTH * FIELD_WIDTH - 40
   }),
   markField: (row, column, value) => set(state => {
     if (typeof state.field[row][column] === 'number') {
@@ -63,5 +67,6 @@ export const useStore = create(devtools(immer((set) => ({
   }),
   decreaseBombs: (val = 1) => set(state => {
     state.bombs -= val
+
   }),
 }))))
