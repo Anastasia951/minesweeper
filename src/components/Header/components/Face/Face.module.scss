@@ -1,0 +1,18 @@
+@import '../../../../variables';
+.face {
+  background-image: url(../../../../assets/sprite.png);
+  width: 25px;
+  height: 25px;
+  &__notStarted {
+    background-position: 0 -26px;
+  }
+  &__worried {
+    background-position: -55px -25px;
+  }
+  &__win {
+    background-position: -82px -25px;
+  }
+  &__failed {
+    background-position: -109px -25px;
+  }
+}

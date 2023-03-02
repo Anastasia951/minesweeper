@@ -3,16 +3,16 @@
   width: 16px;
   height: 16px;
   background-image: url($url);
-  background-position: 0 -50px;
+  background-position: 0px -51px;
 }
 .flag {
-  background-position: -33px -50px;
+  background-position: -33px -51px;
 }
 .empty {
-  background-position: -16px -50px;
+  background-position: -17px -51px;
 }
 .question {
-  background-position: -50px -50px;
+  background-position: -50px -51px;
 }
 
 .bomb {
@@ -23,7 +23,7 @@
     background-position: -102px -51px;
   }
   &-incorrect {
-    background-position: -119px -51 px;
+    background-position: -119px -51px;
   }
 }
 

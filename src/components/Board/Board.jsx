@@ -1,14 +1,29 @@
 import React from 'react'
-import { useField, useOpenedCells } from '../../store/selectors'
-import { useStore } from '../../store/store'
+import {
+  useField,
+  useGameState,
+  useOpenArea,
+  useOpenedCells,
+  useStartGame,
+} from '../../store/selectors'
+import { STATE, useStore } from '../../store/store'
 import { Cell } from '../Cell/Cell'
 import styles from './Board.module.scss'
 export const Board = () => {
   const board = useStore(useField)
   const opened = useStore(useOpenedCells)
-
+  const openArea = useStore(useOpenArea)
+  const status = useStore(useGameState)
+  const startGame = useStore(useStartGame)
+  function onClickHandler(e) {
+    if (status === STATE.NOT_STARTED) {
+      startGame()
+    }
+    const { x, y } = e.target.dataset
+    openArea(x, y)
+  }
   return (
-    <div className={`${styles.grid} bordered`}>
+    <div onClick={onClickHandler} className={`${styles.grid} bordered`}>
       {board.map((row, y) => {
         return row.map((__, x) => {
           return (
