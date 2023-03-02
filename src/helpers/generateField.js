@@ -1,5 +1,3 @@
-import { original } from "immer"
-
 export const genereateField = (FIELD_WIDTH, bombs, row, column) => {
   let field = new Array(FIELD_WIDTH).fill('').map(() => {
     return new Array(FIELD_WIDTH).fill(null)

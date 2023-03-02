@@ -22,6 +22,10 @@ export const Timer = () => {
       }, 1000)
     }
 
+    if (status === STATE.FAILED) {
+      clear()
+    }
+
     return clear
   }, [status])
 

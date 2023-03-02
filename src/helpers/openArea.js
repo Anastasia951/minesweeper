@@ -18,7 +18,21 @@ export const openArea = (bombs, field, row, column) => {
     }
   }
 
-  dfs(row, column)
+  if (bombs[row][column] >= 0) {
+    dfs(row, column)
+    return { field, isGameOver: false }
+  } else {
+    for (let i = 0; i < field.length; i++) {
+      for (let j = 0; j < field[i].length; j++) {
+        if (bombs[i][j] === -1) {
+          field[i][j] = true
+        }
+      }
+    }
 
-  return field
+    field[row][column] = true
+
+    return { field, isGameOver: true }
+  }
+
 }
