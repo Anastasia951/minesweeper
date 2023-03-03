@@ -8,7 +8,7 @@ export const STATE = {
   NOT_STARTED: 'notStarted',
   IN_PROGRESS: 'inProgress',
   FAILED: 'failed',
-  WON: 'won'
+  WON: 'won',
 }
 const FIELD_WIDTH = 16
 export const useStore = create(devtools(immer((set) => ({
@@ -18,6 +18,7 @@ export const useStore = create(devtools(immer((set) => ({
   opened: new Array(FIELD_WIDTH).fill('').map(() => {
     return new Array(FIELD_WIDTH).fill(false)
   }),
+  isMouseOver: false,
   flags: {
   },
   state: STATE.NOT_STARTED,
@@ -28,9 +29,8 @@ export const useStore = create(devtools(immer((set) => ({
     state.state = STATE.IN_PROGRESS
   }),
   openArea: (row, column) => set(state => {
-    let { field, isGameOver, counter } = openArea(state.field, state.opened, row, column)
+    let { field, isGameOver, counter } = openArea(state.field, state.opened, row, column, state.flags)
     state.freeArea -= counter
-    console.log(state.freeArea)
     state.opened = field
     if (isGameOver) {
       state.state = STATE.FAILED
@@ -49,6 +49,8 @@ export const useStore = create(devtools(immer((set) => ({
     state.state = STATE.NOT_STARTED
     state.bombs = 40
     state.freeArea = FIELD_WIDTH * FIELD_WIDTH - 40
+    state.flags = {}
+    state.isMouseOver = false
   }),
   markField: (row, column, value) => set(state => {
     if (typeof state.field[row][column] === 'number') {
@@ -67,6 +69,8 @@ export const useStore = create(devtools(immer((set) => ({
   }),
   decreaseBombs: (val = 1) => set(state => {
     state.bombs -= val
-
   }),
+  setIsMouseOver: () => set(state => {
+    state.isMouseOver = !state.isMouseOver
+  })
 }))))

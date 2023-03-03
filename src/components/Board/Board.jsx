@@ -5,6 +5,7 @@ import {
   useField,
   useGameState,
   useIncreaseBombs,
+  useSetIsMouseOver,
   useMarkField,
   useOldValue,
   useOpenArea,
@@ -25,6 +26,8 @@ export const Board = () => {
   const increaseBombs = useStore(useIncreaseBombs)
   const decreaseBombs = useStore(useDecreaseBombs)
   const oldValue = useStore(useOldValue)
+  const setMouseOver = useStore(useSetIsMouseOver)
+
   function onClickHandler(e) {
     if (status === STATE.WON || status === STATE.FAILED) return
     const { x, y } = e.target.dataset
@@ -35,6 +38,7 @@ export const Board = () => {
       openArea(y, x)
     }
   }
+
   function onContextMenuHandler(e) {
     e.preventDefault()
     if (status === STATE.WON || status === STATE.FAILED) return
@@ -61,8 +65,11 @@ export const Board = () => {
       }
     }
   }
+
   return (
     <div
+      onMouseDown={setMouseOver}
+      onMouseUp={setMouseOver}
       onContextMenu={onContextMenuHandler}
       onClick={onClickHandler}
       className={`${styles.grid} bordered`}>

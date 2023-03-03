@@ -1,12 +1,19 @@
 import React from 'react'
 import styles from './Cell.module.scss'
-let savedVal = null
 export const Cell = ({ isOpened = false, value, x, y }) => {
   let classname = ''
   if (isOpened) {
     switch (value) {
       case -1: {
         classname = 'bomb-opened'
+        break
+      }
+      case 'bomb-incorrect': {
+        classname = 'bomb-incorrect'
+        break
+      }
+      case 'bomb-correct': {
+        classname = 'bomb-correct'
         break
       }
       case 1:

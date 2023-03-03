@@ -9,3 +9,5 @@ export const useMarkField = state => state.markField
 export const useIncreaseBombs = state => state.increaseBombs
 export const useDecreaseBombs = state => state.decreaseBombs
 export const useOldValue = state => state.flags
+export const useSetIsMouseOver = state => state.setIsMouseOver
+export const useIsMouseOver = state => state.isMouseOver
