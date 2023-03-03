@@ -27,7 +27,7 @@ export const openArea = (bombs, field, row, column, oldValues) => {
     dfs(row, column)
     return { field, isGameOver: false, counter }
   } else {
-    bombs[row][column] = 'bomb-incorrect'
+    bombs[row][column] = 'bomb-correct'
     for (let i = 0; i < field.length; i++) {
       for (let j = 0; j < field[i].length; j++) {
         if (bombs[i][j] === -1) {
@@ -35,7 +35,7 @@ export const openArea = (bombs, field, row, column, oldValues) => {
         }
         if (bombs[i][j] === 'flag' || bombs[i][j] === 'question') {
           if (oldValues[i][j] !== -1) {
-            bombs[i][j] = 'bomb-correct'
+            bombs[i][j] = 'bomb-incorrect'
             field[i][j] = true
           }
         }

@@ -48,6 +48,7 @@ export const Cell = ({ isOpened = false, value, x, y }) => {
   }
   return (
     <button
+      name={`cell-${x}:${y}`}
       data-x={x}
       data-y={y}
       className={`${styles.cell} ${styles[classname]}`}

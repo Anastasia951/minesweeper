@@ -12,6 +12,7 @@ export const Face = () => {
   const isMouseOver = useStore(useIsMouseOver)
   return (
     <button
+      name='face'
       onClick={restart}
       className={`${styles.face} ${styles[`face__${status}`]} ${
         isMouseOver ? styles['face__worried'] : ''
