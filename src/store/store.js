@@ -53,7 +53,7 @@ export const useStore = create(devtools(immer((set) => ({
     state.isMouseOver = false
   }),
   markField: (row, column, value) => set(state => {
-    if (typeof state.field[row][column] === 'number') {
+    if (typeof state.field[row][column] === 'number' || state.field[row][column] === null) {
       if ([row] in state.flags) {
         state.flags[row][column] = state.field[row][column]
       } else {
