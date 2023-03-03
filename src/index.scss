@@ -19,6 +19,9 @@ body {
 input,
 button {
   border: none;
+  &:focus {
+    outline: none;
+  }
 }
 
 .bordered {
