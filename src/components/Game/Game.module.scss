@@ -2,6 +2,10 @@
 
 .game {
   transform: scale(1.5);
+  transform-origin: center;
   padding: 15px;
   background-color: $bg;
+  @media (max-width: 400px) {
+    transform: scale(1.1);
+  }
 }
